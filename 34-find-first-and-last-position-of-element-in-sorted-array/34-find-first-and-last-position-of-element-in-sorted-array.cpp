@@ -7,14 +7,14 @@ public:
         int end=n-1;
         int flag=0;
         int f=-1,l=-1;
-        int midf,midl;
+        //int midf,midl;
         while(str<=end)
           {
                 
                 mid=(str+end)/2;
                 if(target==nums[mid])
                 {  flag=1;
-                    midf=mid;
+                    f=mid;
                     end=mid-1;
                     continue;
                     
@@ -27,16 +27,16 @@ public:
            }
         if(flag==0)
             return {-1,-1};
-        cout<<midf<<" "<<mid;
        
-        str=midf;end=n-1;
+       
+        str=f;end=n-1;
          while(str<=end)
           {
                 
                 mid=(str+end)/2;
                 if(target==nums[mid])
                 {  
-                    midl=mid;
+                    l=mid;
                     str=mid+1;
                     continue;
                     
@@ -48,8 +48,8 @@ public:
             
            }
 
-        f=midf;
-        l=midl;
+        //f=midf;
+        //l=midl;
         return {f,l};
         
     
