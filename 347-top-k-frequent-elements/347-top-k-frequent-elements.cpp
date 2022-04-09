@@ -9,12 +9,22 @@ public:
             ++mp[i];
         }
         
-        vector<pair<int,int>> v(mp.begin(),mp.end());
-        sort(v.begin(),v.end(),[] ( const auto &x, const auto &y){return x.second> y.second;});
+        multimap<int,int>mm;
         vector<int>ans;
-        for(int i=0;i<k;i++)
+        for(auto i:mp)
         {
-            ans.push_back(v[i].first);
+            mm.insert({i.second,i.first});
+        }
+        
+        for(auto it=mm.rbegin();it!=mm.rend();it++)
+        {
+            if(k!=0)
+            {
+                ans.push_back(it->second);
+                k--;
+            }
+            else
+                break;
         }
         return ans;
         
