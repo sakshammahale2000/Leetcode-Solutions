@@ -1,5 +1,11 @@
+bool compare( const pair<int,int>&x, const pair<int,int>&y)
+    {
+        return x.second> y.second;
+    }
+
 class Solution {
 public:
+    
     vector<int> topKFrequent(vector<int>& nums, int k) {
         map<int,int>mp;
         
@@ -9,24 +15,16 @@ public:
             ++mp[i];
         }
         
-        multimap<int,int>mm;
+        vector<pair<int,int>> v(mp.begin(),mp.end());
+        sort(v.begin(),v.end(),compare );
         vector<int>ans;
-        for(auto i:mp)
+        for(int i=0;i<k;i++)
         {
-            mm.insert({i.second,i.first});
-        }
-        
-        for(auto it=mm.rbegin();it!=mm.rend();it++)
-        {
-            if(k!=0)
-            {
-                ans.push_back(it->second);
-                k--;
-            }
-            else
-                break;
+            ans.push_back(v[i].first);
         }
         return ans;
+        
+    
         
     }
 };
